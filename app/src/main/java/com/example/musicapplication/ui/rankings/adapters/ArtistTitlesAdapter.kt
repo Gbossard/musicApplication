@@ -1,7 +1,5 @@
 package com.example.musicapplication.ui.rankings.adapters
 
-import android.app.Activity
-import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -12,19 +10,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapplication.R
+import com.example.musicapplication.ui.networks.Album
 import com.example.musicapplication.ui.networks.Title
 import com.example.musicapplication.ui.rankings.ArtistDetailsActivity
-import com.example.musicapplication.ui.rankings.TitlesFragment
 import com.squareup.picasso.Picasso
 
-class TrendingTitlesListAdapter(private val mList: List<Title>) : RecyclerView.Adapter<TrendingTitlesListAdapter.ViewHolder>() {
+class ArtistTitlesAdapter(private val mList: List<Title>) : RecyclerView.Adapter<ArtistTitlesAdapter.ViewHolder>() {
 
     private var context: Context? = null
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_trending_item, parent, false)
+            .inflate(R.layout.list_artist_details_titles, parent, false)
 
         context = parent.context
 
@@ -36,21 +34,17 @@ class TrendingTitlesListAdapter(private val mList: List<Title>) : RecyclerView.A
 
         var titlesViewModel = mList[position]
 
-        // sets the image to the imageview from our itemHolder class
-        Picasso.with(context).load(titlesViewModel.strTrackThumb).into(holder.picture)
-
         // sets the text to the textview from our itemHolder class
-        holder.intChartPlace.text = titlesViewModel.intChartPlace
         holder.title.text = titlesViewModel.strTrack
-        holder.strArtist.text = titlesViewModel.strArtist
+        holder.count.text = (position + 1).toString()
 
-        holder.strArtist.setOnClickListener {
+        /*holder.itemView.setOnClickListener {
             val intent = Intent(context, ArtistDetailsActivity::class.java)
-            intent.putExtra("artistId", titlesViewModel.idArtist)
-            intent.putExtra("artistName", titlesViewModel.strArtist)
+            intent.putExtra("artist", titlesViewModel.idArtist)
+            intent.putExtra("album", titlesViewModel.idAlbum)
             Log.d("INTENT", intent.extras.toString())
             context?.startActivity(intent)
-        }
+        }*/
 
     }
 
@@ -59,10 +53,8 @@ class TrendingTitlesListAdapter(private val mList: List<Title>) : RecyclerView.A
 
     // Holds the views for adding it to image and text
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var picture: ImageView = itemView.findViewById(R.id.picture)
-        var intChartPlace: TextView = itemView.findViewById(R.id.intChartPlace)
         var title: TextView = itemView.findViewById(R.id.title)
-        var strArtist: TextView = itemView.findViewById(R.id.strArtist)
+        var count: TextView = itemView.findViewById(R.id.count)
 
     }
 
