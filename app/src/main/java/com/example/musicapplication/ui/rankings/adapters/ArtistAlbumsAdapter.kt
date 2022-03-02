@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapplication.R
 import com.example.musicapplication.ui.networks.Album
 import com.example.musicapplication.ui.networks.Title
+import com.example.musicapplication.ui.rankings.AlbumDetailsActivity
 import com.example.musicapplication.ui.rankings.ArtistDetailsActivity
 import com.squareup.picasso.Picasso
 
@@ -42,9 +43,8 @@ class ArtistAlbumsAdapter(private val mList: List<Album>) : RecyclerView.Adapter
         holder.album.text = albumsViewModel.strAlbum
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, ArtistDetailsActivity::class.java)
-            intent.putExtra("artist", albumsViewModel.idArtist)
-            intent.putExtra("album", albumsViewModel.idAlbum)
+            val intent = Intent(context, AlbumDetailsActivity::class.java)
+            intent.putExtra("albumId", albumsViewModel.idAlbum)
             Log.d("INTENT", intent.extras.toString())
             context?.startActivity(intent)
         }

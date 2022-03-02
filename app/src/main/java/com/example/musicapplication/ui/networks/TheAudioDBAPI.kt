@@ -24,6 +24,10 @@ interface TheAudioDBAPI {
     @GET("album.php")
     fun getAlbumsFromArtistAsync(@Query("i") artist: String): Deferred<ArtistAlbums>
 
+    //Get tracks and data from an album
+    @GET("track.php")
+    fun getAlbumAsync(@Query("m") album: String): Deferred<AlbumTitles>
+
     //Get artist data
     @GET("artist.php")
     fun getArtistAsync(@Query("i") artist: String): Deferred<ArtistData>
@@ -53,6 +57,10 @@ object NetworkManager {
 
     suspend fun getAlbumsFromArtist(id: String): ArtistAlbums {
         return api.getAlbumsFromArtistAsync(id).await()
+    }
+
+    suspend fun getAlbum(album: String): AlbumTitles {
+        return api.getAlbumAsync(album).await()
     }
 
     suspend fun getArtist(id: String): ArtistData {
@@ -89,6 +97,10 @@ data class ArtistTitles (
     val track: List<Title>
 )
 
+data class AlbumTitles (
+    val track: List<Title>
+)
+
 data class Album (
     //val idTrend: String?,
     val intChartPlace: String?,
@@ -106,6 +118,8 @@ data class Album (
     val strAlbumThumb: String?,
     val strTrackThumb: String?,
     val strCountry: String?,
+    val intScoreVotes: String?,
+    val strDescriptionEN: String?,
     //val strType: String?,
     //val intWeek: String?,
     //val dateAdded: String?,
@@ -116,6 +130,10 @@ data class TrendingAlbums (
 )
 
 data class ArtistAlbums (
+    val album: List<Album>
+)
+
+data class AlbumData (
     val album: List<Album>
 )
 

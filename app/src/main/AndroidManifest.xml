@@ -28,6 +28,12 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.MusicApplication.NoActionBar">
         </activity>
+        <activity
+            android:name=".ui.rankings.AlbumDetailsActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MusicApplication.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
