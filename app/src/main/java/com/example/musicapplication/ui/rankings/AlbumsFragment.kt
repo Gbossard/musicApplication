@@ -21,9 +21,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
- * A simple [Fragment] subclass.
- * Use the [AlbumsFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * ONGLET ALBUMS :
+ * - liste des albums les plus populaires actuellement (TOP 6)
  */
 class AlbumsFragment : Fragment() {
 
@@ -47,19 +46,12 @@ class AlbumsFragment : Fragment() {
                 val albums = it.response
                 if (albums != null) {
                     for(i in albums.trending){
-                        //Log.d("DATA ITEM", i.toString())
                         data.add(i)
                     }
-                    //Reverse order of list
+                    //On inverse l'ordre :
                     data.reverse()
-
-                    Log.d("DATA", data.toString())
-
                     bindingList.recyclerList.apply {
-
                         bindingList.recyclerList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
-
-                        // Setting the Adapter with the recyclerview
                         bindingList.recyclerList.adapter = TrendingAlbumsListAdapter(data)
 
                     }

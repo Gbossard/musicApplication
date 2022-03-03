@@ -24,9 +24,13 @@ interface TheAudioDBAPI {
     @GET("album.php")
     fun getAlbumsFromArtistAsync(@Query("i") artist: String): Deferred<ArtistAlbums>
 
+    //Get albums from an artist
+    @GET("album.php")
+    fun getAlbumAsync(@Query("m") artist: String): Deferred<AlbumData>
+
     //Get tracks and data from an album
     @GET("track.php")
-    fun getAlbumAsync(@Query("m") album: String): Deferred<AlbumTitles>
+    fun getAlbumTracklistAsync(@Query("m") album: String): Deferred<AlbumTitles>
 
     //Get artist data
     @GET("artist.php")
@@ -59,7 +63,11 @@ object NetworkManager {
         return api.getAlbumsFromArtistAsync(id).await()
     }
 
-    suspend fun getAlbum(album: String): AlbumTitles {
+    suspend fun getAlbumTracklist(album: String): AlbumTitles {
+        return api.getAlbumTracklistAsync(album).await()
+    }
+
+    suspend fun getAlbum(album: String): AlbumData {
         return api.getAlbumAsync(album).await()
     }
 

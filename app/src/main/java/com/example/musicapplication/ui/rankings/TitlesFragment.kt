@@ -19,9 +19,8 @@ import kotlinx.coroutines.launch
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [TitlesFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * ONGLET TITRE :
+ * - liste des singles les plus populaires actuellement (TOP 5)
  */
 class TitlesFragment : Fragment() {
 
@@ -42,29 +41,18 @@ class TitlesFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.listen().collect() {
-                Log.d("JSON", it.toString())
                 val titles = it.response
                 if (titles != null) {
                     for(i in titles.trending){
-                        Log.d("DATA ITEM", i.toString())
                         data.add(i)
                     }
-
-                    //Reverse order of list
+                    //On inverse l'ordre de la liste :
                     data.reverse()
 
-                    Log.d("DATA", data.toString())
-
                     bindingList.recyclerList.apply {
-
                         bindingList.recyclerList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
-
-                        //bindingList.recyclerList.setHasFixedSize(true)
-
-                        // Setting the Adapter with the recyclerview
+                        // Remplissage du recycler view :
                         bindingList.recyclerList.adapter = TrendingTitlesListAdapter(data)
-
-                        Log.d("STEP", data.toString())
                     }
                 }
             }

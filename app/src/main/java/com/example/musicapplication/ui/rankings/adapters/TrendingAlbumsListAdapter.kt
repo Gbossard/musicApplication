@@ -1,6 +1,8 @@
 package com.example.musicapplication.ui.rankings.adapters
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapplication.R
 import com.example.musicapplication.ui.networks.Album
+import com.example.musicapplication.ui.rankings.AlbumDetailsActivity
+import com.example.musicapplication.ui.rankings.ArtistDetailsActivity
 import com.squareup.picasso.Picasso
 
 class TrendingAlbumsListAdapter(private val mList: List<Album>) : RecyclerView.Adapter<TrendingAlbumsListAdapter.ViewHolder>() {
@@ -39,6 +43,23 @@ class TrendingAlbumsListAdapter(private val mList: List<Album>) : RecyclerView.A
         holder.intChartPlace.text = albumsViewModel.intChartPlace
         holder.title.text = albumsViewModel.strAlbum
         holder.strArtist.text = albumsViewModel.strArtist
+
+        // Album on click : redirection vers l'écran Détails Album
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, AlbumDetailsActivity::class.java)
+            intent.putExtra("albumId", albumsViewModel.idAlbum)
+            Log.d("INTENT", intent.extras.toString())
+            context?.startActivity(intent)
+        }
+
+        // Artiste on click : redirection vers l'écran Détails Artiste
+        holder.strArtist.setOnClickListener {
+            val intent = Intent(context, ArtistDetailsActivity::class.java)
+            intent.putExtra("artistId", albumsViewModel.idArtist)
+            intent.putExtra("artistName", albumsViewModel.strArtist)
+            Log.d("INTENT", intent.extras.toString())
+            context?.startActivity(intent)
+        }
 
     }
 

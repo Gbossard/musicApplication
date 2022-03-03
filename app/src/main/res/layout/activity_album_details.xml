@@ -6,6 +6,12 @@
         <variable
             name="track"
             type="com.example.musicapplication.ui.networks.Title" />
+        <variable
+            name="album"
+            type="com.example.musicapplication.ui.networks.Album" />
+        <variable
+            name="tracklistSize"
+            type="String" />
     </data>
 
     <ScrollView
@@ -21,40 +27,83 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="@color/black">
+                android:background="@color/black"
+                android:id="@+id/relative">
 
                 <ImageView
-                    android:id="@+id/image"
+                    android:id="@+id/background"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitXY" />
+                    android:scaleType="centerCrop"
+                    android:alpha="0.4"/>
 
-                <ImageButton
-                    android:id="@+id/backToMain"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="start"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_back" />
-
-                <TextView
-                    android:id="@+id/artist_name"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="@{track.strArtist}"
-                    android:layout_above="@id/subtitle"
-                    />
+                    android:orientation="horizontal"
+                    android:layout_centerHorizontal="true"
+                    android:paddingHorizontal="15dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="30dp">
 
-                <TextView
-                    android:id="@+id/subtitle"
+                    <ImageButton
+                        android:id="@+id/backToMain"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:background="@drawable/ic_back" />
+
+                    <TextView
+                        android:id="@+id/artist_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text='@{album.strArtist}'
+                        android:layout_above="@id/subtitle"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:maxLines="3"
-                    android:text='@{track.strAlbum}'
-                    android:layout_alignParentBottom="true" />
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:paddingHorizontal="15dp"
+                    android:paddingBottom="10dp">
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/album_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="@{album.strAlbum}"
+                            android:layout_above="@id/subtitle"
+                            />
+
+                        <TextView
+                            android:id="@+id/subtitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:maxLines="3"
+                            android:text='@{tracklistSize.concat(" chansons")}'
+                            android:layout_alignParentBottom="true" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </RelativeLayout>
 
@@ -62,8 +111,15 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{album.strDescriptionEN}"
+                    android:maxLines="5"
+                    android:ellipsize="end" />
 
 
                 <TextView

@@ -31,14 +31,17 @@ class AlbumDetailsViewModel() : ViewModel() {
                     currentState = AlbumCurrentState.loading,
                 )
             )
-
+            // Liste des titres présentes dans l'album :
+            val resTracklist = NetworkManager.getAlbumTracklist(id)
+            // Infos de l'album :
             val resAlbumData = NetworkManager.getAlbum(id)
 
             try {
-                if (resAlbumData.track.isNotEmpty()) {
+                if (resTracklist.track.isNotEmpty()) {
                     albumFlow.emit(
                         AlbumState(
                             currentState = AlbumCurrentState.success,
+                            tracklist = resTracklist,
                             albumData = resAlbumData
                         )
                     )
@@ -46,6 +49,7 @@ class AlbumDetailsViewModel() : ViewModel() {
                     albumFlow.emit(
                         AlbumState(
                             currentState = AlbumCurrentState.error,
+                            tracklist = resTracklist,
                             albumData = resAlbumData
                         )
                     )
@@ -54,6 +58,7 @@ class AlbumDetailsViewModel() : ViewModel() {
                 albumFlow.emit(
                     AlbumState(
                         currentState = AlbumCurrentState.error,
+                        tracklist = resTracklist,
                         albumData = resAlbumData
                     )
                 )
@@ -66,7 +71,8 @@ class AlbumDetailsViewModel() : ViewModel() {
 
 data class AlbumState(
     val currentState: AlbumCurrentState,
-    val albumData: AlbumTitles? = null
+    val tracklist: AlbumTitles? = null,
+    val albumData: AlbumData? = null
 )
 
 enum class AlbumCurrentState {

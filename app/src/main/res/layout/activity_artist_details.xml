@@ -99,6 +99,14 @@
                 android:layout_height="500dp"
                 android:layout_marginBottom="30dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aucun élément trouvé"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:id="@+id/isEmptyTopSingles" />
+
         </LinearLayout>
 
     </LinearLayout>

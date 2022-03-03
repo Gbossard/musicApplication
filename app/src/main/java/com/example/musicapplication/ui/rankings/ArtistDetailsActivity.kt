@@ -10,11 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.musicapplication.R
 import com.example.musicapplication.databinding.ActivityArtistDetailsBinding
 import androidx.annotation.NonNull
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapplication.databinding.ActivityMainBinding
 import com.example.musicapplication.databinding.FragmentTitlesBinding
 import com.example.musicapplication.ui.networks.Album
@@ -27,8 +29,15 @@ import com.example.musicapplication.ui.rankings.models.ArtistViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.*
 
-
+/**
+ * ECRAN DETAILS DE L'ARTISTE :
+ * - header : photo de l'artiste + nom + pays + genre musical
+ * - description
+ * - liste de tous les albums
+ * - titres les + populaires
+ */
 class ArtistDetailsActivity : AppCompatActivity() {
 
     private val viewModel: ArtistViewModel by viewModels()
@@ -43,7 +52,7 @@ class ArtistDetailsActivity : AppCompatActivity() {
         val artistId: String = intent.getStringExtra("artistId").toString()
         val artistName: String = intent.getStringExtra("artistName").toString()
 
-        //Back button
+        //Back button :
         binding.backToMain.setOnClickListener{
             onBackPressed()
         }
@@ -53,13 +62,17 @@ class ArtistDetailsActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.listen().collect() {
 
+                // Info de l'artiste (nom, description, ...) :
                 val artistTable = it.artistData
+                // Liste des albums :
                 val artistAlbumTable = it.artistAlbums
+                // Titres les + populaires :
                 val artistTitleTable = it.artistTitles
 
                 if (artistTable != null) {
                     var artist = ArtistData(artistTable.artists).artists[0]
                     binding.artist = artist
+                    //Affichage de l'image header :
                     Picasso.with(this@ArtistDetailsActivity).load(artist.strArtistThumb).into(binding.image)
 
                 }
@@ -70,30 +83,30 @@ class ArtistDetailsActivity : AppCompatActivity() {
                     }
 
                     binding.albumList.apply {
-
                         binding.albumList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
                         binding.albumList.setHasFixedSize(true)
-                        // Setting the Adapter with the recyclerview
                         binding.albumList.adapter = ArtistAlbumsAdapter(dataAlbums)
-
                     }
                 }
 
-                if (artistTitleTable != null) {
+                if (artistTitleTable != null && artistTitleTable.track != null) {
+
+                    binding.popularTitlesList.isVisible = true
+                    binding.isEmptyTopSingles.isVisible = !binding.popularTitlesList.isVisible
+
                     for(i in artistTitleTable.track){
                         dataTitles.add(i)
                     }
-
                     binding.popularTitlesList.apply {
-
                         binding.popularTitlesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
-                        // Setting the Adapter with the recyclerview
                         binding.popularTitlesList.adapter = ArtistTitlesAdapter(dataTitles)
-
                     }
+                } else {
+                    binding.popularTitlesList.isVisible = false
+                    binding.isEmptyTopSingles.isVisible = !binding.popularTitlesList.isVisible
                 }
             }
         }
-
     }
+
 }

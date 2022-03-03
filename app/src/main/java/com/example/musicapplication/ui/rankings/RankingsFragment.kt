@@ -21,19 +21,18 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 private const val ARG_OBJECT = "object"
 
-
+/**
+ * Écran d'accueil -> Onglet Classements:
+ * - onglet Titres : affichage de TitlesFragment lorsque l'onglet est actif
+ * - onglet Albums : affichage de AlbumsFragment lorsque l'onglet est actif
+ */
 class RankingsFragment : Fragment() {
 
-    //private lateinit var rankingsViewModel: RankingsViewModel
     private var _binding: FragmentRankingsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
-    // tab titles
+    // Titres des onglets :
     var titles = arrayOf("Titres", "Albums")
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,12 +40,10 @@ class RankingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        //rankingsViewModel =
-        //    ViewModelProvider(this).get(RankingsViewModel::class.java)
-
         _binding = FragmentRankingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        //On réaffiche la toolbar (que l'on a retirée dans le thème NOACTIONBAR) :
         (activity as AppCompatActivity).setSupportActionBar(_binding?.tabToolbar)
 
         return root
@@ -55,15 +52,10 @@ class RankingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*val textView: TextView = binding.textHome
-        rankingsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })*/
         _binding?.tabViewpager2?.let { setupViewPager(it) }
-
-        // If we dont use setupWithViewPager() method then
-        // tabs are not used or shown when activity opened
+        // Création des onglets sur l'écran :
         setupTabLayout()
+        // On affiche le fragment concerné en fonction de l'onglet seléctionné :
         setupViewPager(_binding?.tabViewpager2)
 
         //adapter.addFragment(TitlesFragment(), "Titres")
@@ -71,7 +63,9 @@ class RankingsFragment : Fragment() {
 
     }
 
-    //Set up titles of tabs (Titres + ALbums)
+    /**
+     * Création des onglets TITRES + ALBUMS
+     */
     private fun setupTabLayout() {
         _binding?.let {
             TabLayoutMediator(
@@ -80,14 +74,19 @@ class RankingsFragment : Fragment() {
         }
     }
 
+    /**
+     * Affichage du contenu du fragment en fonction de l'onglet actif
+     */
     private fun setupViewPager(viewpager: ViewPager2?) {
         var fragmentManager = (activity as FragmentActivity).supportFragmentManager
 
-        // setting adapter to view pager.
+        // On fait appel à l'adapter pour afficher le contenu du bon fragment :
         viewpager?.adapter = ViewPagerAdapter(fragmentManager, lifecycle)
     }
 
-    //Adapter
+    /**
+     * Adapter : association du fragment affiché à l'onglet correspondant
+     */
     class ViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fm, lifecycle){
 
         override fun getItemCount(): Int {
