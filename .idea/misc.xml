@@ -12,13 +12,16 @@
         <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
         <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/fragment_rankings.xml" value="0.1" />
+        <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/fragment_search.xml" value="0.1" />
         <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/fragment_titles.xml" value="0.1" />
         <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/layout_albums.xml" value="0.1" />
         <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/layout_titles.xml" value="0.1" />
-        <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/list_artist_details_album.xml" value="0.22" />
+        <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/list_artist_details_album.xml" value="0.1" />
         <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/list_artist_details_titles.xml" value="0.22" />
         <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/list_item.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/list_trending_item.xml" value="0.1" />
+        <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/search_albums_list.xml" value="0.11865942028985507" />
+        <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/layout/search_artists_list.xml" value="0.1" />
         <entry key="..\:/Users/krystel/Documents/Supdeweb/tp_kotlin_app_musique/github/musicApplication/app/src/main/res/menu/bottom_nav_menu.xml" value="0.11770833333333333" />
       </map>
     </option>

@@ -11,9 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapplication.R
 import com.example.musicapplication.ui.networks.Album
-import com.example.musicapplication.ui.networks.Title
 import com.example.musicapplication.ui.rankings.AlbumDetailsActivity
-import com.example.musicapplication.ui.rankings.ArtistDetailsActivity
 import com.squareup.picasso.Picasso
 
 class ArtistAlbumsAdapter(private val mList: List<Album>) : RecyclerView.Adapter<ArtistAlbumsAdapter.ViewHolder>() {
@@ -33,7 +31,7 @@ class ArtistAlbumsAdapter(private val mList: List<Album>) : RecyclerView.Adapter
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        var albumsViewModel = mList[position]
+        val albumsViewModel = mList[position]
 
         // sets the image to the imageview from our itemHolder class
         Picasso.with(context).load(albumsViewModel.strAlbumThumb).into(holder.picture)

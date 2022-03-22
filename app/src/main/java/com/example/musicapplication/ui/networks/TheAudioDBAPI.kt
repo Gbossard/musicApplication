@@ -1,5 +1,6 @@
 package com.example.musicapplication.ui.networks
 
+import com.example.musicapplication.ui.search.models.SearchRecyclerDataModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
@@ -35,6 +36,14 @@ interface TheAudioDBAPI {
     //Get artist data
     @GET("artist.php")
     fun getArtistAsync(@Query("i") artist: String): Deferred<ArtistData>
+
+    //Search artist
+    @GET("search.php")
+    fun searchArtistAsync(@Query("s") artist: String): Deferred<SearchRecyclerDataModel.ArtistDataModel>
+
+    //Search album
+    @GET("searchalbum.php")
+    fun searchAlbumAsync(@Query("s") artist: String): Deferred<SearchRecyclerDataModel.AlbumDataModel>
 
 }
 
@@ -73,6 +82,14 @@ object NetworkManager {
 
     suspend fun getArtist(id: String): ArtistData {
         return api.getArtistAsync(id).await()
+    }
+
+    suspend fun searchArtist(artist: String): SearchRecyclerDataModel.ArtistDataModel {
+        return api.searchArtistAsync(artist).await()
+    }
+
+    suspend fun searchAlbum(artist: String): SearchRecyclerDataModel.AlbumDataModel {
+        return api.searchAlbumAsync(artist).await()
     }
 }
 
