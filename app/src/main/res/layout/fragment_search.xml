@@ -8,7 +8,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp">
 
     <!--This appbarlayout covers the toolbar and tablayout-->
     <com.google.android.material.appbar.AppBarLayout
@@ -22,15 +23,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/Theme.MusicApplication"
-        app:title="Rechercher"/>
+        app:popupTheme="@style/Theme.MusicApplication">
+
+        <TextView
+            android:id="@+id/custom_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rechercher"
+            android:textColor="#000"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:padding="0dp"
+            android:textAlignment="textStart"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:padding="10dp"
-        android:background="#ccc"
-        android:id="@+id/edittext"/>
+        android:background="#E6E6E6"
+        android:id="@+id/edittext"
+        android:drawableLeft="@drawable/ic_search" />
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"

@@ -5,7 +5,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_gravity="start">
 
     <!--This appbarlayout covers the toolbar and tablayout-->
     <com.google.android.material.appbar.AppBarLayout
@@ -22,8 +23,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/Theme.MusicApplication"
-            app:title="Classements"/>
+            app:popupTheme="@style/Theme.MusicApplication">
+
+            <TextView
+                android:id="@+id/custom_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Classements"
+                android:textColor="#000"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:textAlignment="textStart"/>
+
+        </androidx.appcompat.widget.Toolbar>
 
         <!-- tablayout which contains which is
             important to show tabs -->
@@ -33,6 +45,7 @@
             android:layout_height="wrap_content"
             app:tabIndicatorHeight="5dp"
             app:tabTextColor="@color/black"
+            app:tabIndicatorColor="#00AC5A"
             app:tabMode="fixed"
             app:tabGravity="fill">
 

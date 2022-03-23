@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_ranking">
+    app:startDestination="@+id/navigation_ranking"
+    app:itemIconTint="@menu/bottom_nav_selector">
 
     <fragment
         android:id="@+id/navigation_ranking"
@@ -12,7 +13,7 @@
         tools:layout="@layout/fragment_rankings" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_search"
         android:name="com.example.musicapplication.ui.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
