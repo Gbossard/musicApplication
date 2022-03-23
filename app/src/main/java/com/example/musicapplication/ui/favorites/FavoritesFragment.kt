@@ -4,19 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.musicapplication.databinding.FragmentFavoritesBinding
 
 class FavoritesFragment : Fragment() {
-
-    private lateinit var favoritesViewModel: FavoritesViewModel
+    private val viewModel: FavoritesViewModel by viewModels()
     private var _binding: FragmentFavoritesBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
 
@@ -25,16 +20,12 @@ class FavoritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        favoritesViewModel =
-            ViewModelProvider(this).get(FavoritesViewModel::class.java)
-
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        favoritesViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        //On réaffiche la toolbar (que l'on a retirée dans le thème NOACTIONBAR) :
+        (activity as AppCompatActivity).setSupportActionBar(_binding?.tabToolbar)
+
         return root
     }
 
