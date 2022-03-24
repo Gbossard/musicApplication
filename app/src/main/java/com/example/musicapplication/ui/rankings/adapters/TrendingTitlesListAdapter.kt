@@ -40,7 +40,7 @@ class TrendingTitlesListAdapter(private val mList: List<Title>) : RecyclerView.A
         Picasso.with(context).load(titlesViewModel.strTrackThumb).into(holder.picture)
 
         // sets the text to the textview from our itemHolder class
-        holder.intChartPlace.text = titlesViewModel.intChartPlace
+        holder.intChartPlace.text = (position + 1).toString()
         holder.title.text = titlesViewModel.strTrack
         holder.strArtist.text = titlesViewModel.strArtist
 

@@ -66,7 +66,11 @@ class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
             var artist: TextView = itemView.findViewById(R.id.artist)
 
             // sets the image to the imageview from our itemHolder class
-            Picasso.with(itemView.context).load(item.strArtistThumb).into(picture)
+            if(item.strArtistThumb != null){
+                Picasso.with(itemView.context).load(item.strArtistThumb).into(picture)
+            } else {
+                Picasso.with(itemView.context).load(R.drawable.ic_avatar).into(picture)
+            }
             artist.text = item.strArtist
 
             itemView.setOnClickListener {
@@ -84,7 +88,11 @@ class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
             var artist: TextView = itemView.findViewById(R.id.artist)
 
             // sets the image to the imageview from our itemHolder class
-            Picasso.with(itemView.context).load(item.strAlbumThumb).into(picture)
+            if(item.strAlbumThumb != null){
+                Picasso.with(itemView.context).load(item.strAlbumThumb).into(picture)
+            } else {
+                Picasso.with(itemView.context).load(R.drawable.ic_album).into(picture)
+            }
             artist.text = item.strArtist
             album.text = item.strAlbum
 

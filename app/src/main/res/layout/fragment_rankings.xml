@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="Classements"
                 android:textColor="#000"
-                android:textSize="40sp"
+                android:textSize="36sp"
                 android:textStyle="bold"
                 android:textAlignment="textStart"/>
 
@@ -43,8 +43,11 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorHeight="5dp"
-            app:tabTextColor="@color/black"
+            android:theme="@style/TabSingleLine"
+            app:tabTextAppearance="@style/TabStyle"
+            app:tabIndicatorHeight="1dp"
+            app:tabTextColor="#B9B9B9"
+            app:tabSelectedTextColor="@color/black"
             app:tabIndicatorColor="#00AC5A"
             app:tabMode="fixed"
             app:tabGravity="fill">
