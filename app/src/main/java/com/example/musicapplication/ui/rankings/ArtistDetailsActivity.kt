@@ -14,11 +14,17 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapplication.databinding.ActivityMainBinding
 import com.example.musicapplication.databinding.FragmentTitlesBinding
+import com.example.musicapplication.ui.favorites.database.FavoriteDatabase
+import com.example.musicapplication.ui.favorites.database.FavoriteRepository
+import com.example.musicapplication.ui.favorites.models.FavoriteViewModel
+import com.example.musicapplication.ui.favorites.models.FavoriteViewModelFactory
 import com.example.musicapplication.ui.networks.Album
 import com.example.musicapplication.ui.networks.ArtistData
 import com.example.musicapplication.ui.networks.Title
@@ -42,6 +48,7 @@ class ArtistDetailsActivity : AppCompatActivity() {
 
     private val viewModel: ArtistViewModel by viewModels()
     lateinit var binding : ActivityArtistDetailsBinding
+    private lateinit var favoriteViewModel: FavoriteViewModel
     private var dataAlbums = mutableListOf<Album>()
     private var dataTitles = mutableListOf<Title>()
 
@@ -51,6 +58,14 @@ class ArtistDetailsActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_artist_details)
         val artistId: String = intent.getStringExtra("artistId").toString()
         val artistName: String = intent.getStringExtra("artistName").toString()
+
+        // Favorites
+        val dao = FavoriteDatabase.getInstance(application).favoriteDao
+        val repository = FavoriteRepository(dao)
+        val factory = FavoriteViewModelFactory(repository)
+        favoriteViewModel = ViewModelProvider(this, factory).get(FavoriteViewModel::class.java)
+        binding.favoriteViewModel = favoriteViewModel
+        binding.lifecycleOwner = this
 
         //Back button :
         binding.backToMain.setOnClickListener{

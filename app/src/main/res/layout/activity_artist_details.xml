@@ -7,6 +7,9 @@
         name="artist"
         type="com.example.musicapplication.ui.networks.Artist" />
     <variable
+        name="favoriteViewModel"
+        type="com.example.musicapplication.ui.favorites.models.FavoriteViewModel" />
+    <variable
         name="albumCount"
         type="String" />
 </data>
@@ -49,12 +52,13 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
 
-                <ImageButton
-                    android:id="@+id/addToFavorites"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/ic_favorite" />
+            <ImageButton
+                android:id="@+id/addToFavorites"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:clickable="@{() -> favoriteViewModel.save()}"
+                android:textColor="@color/white"
+                android:background="@drawable/ic_favorite" />
 
             </LinearLayout>
 
