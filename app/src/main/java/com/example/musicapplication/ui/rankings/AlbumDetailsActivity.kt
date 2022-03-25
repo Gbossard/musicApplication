@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.lifecycleScope
@@ -71,6 +72,12 @@ class AlbumDetailsActivity : AppCompatActivity() {
                 if (albumTable != null) {
                     var album = AlbumData(albumTable.album).album[0]
                     binding.album = album
+
+                    //Si l'artiste est noté, on affiche les votes :
+                    if(album.intScore == null){
+                        binding.votes.isVisible = false
+                    }
+
                     //Affichage de l'image header :
                     Picasso.with(this@AlbumDetailsActivity).load(album.strAlbumThumb).into(binding.image)
                     Picasso.with(this@AlbumDetailsActivity).load(album.strAlbumThumb).into(binding.background)

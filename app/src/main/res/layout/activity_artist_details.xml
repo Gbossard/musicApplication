@@ -6,6 +6,9 @@
     <variable
         name="artist"
         type="com.example.musicapplication.ui.networks.Artist" />
+    <variable
+        name="albumCount"
+        type="String" />
 </data>
 
 <ScrollView
@@ -20,38 +23,49 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="340dp"
             android:background="@color/black">
 
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp" >
+
+                <ImageButton
+                    android:id="@+id/backToMain"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/ic_back" />
+                <View
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"/>
+                    android:layout_weight="1" />
 
-            <ImageButton
-                android:id="@+id/backToMain"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="start"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/ic_back" />
+                <ImageButton
+                    android:id="@+id/addToFavorites"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/ic_favorite" />
 
-            <ImageButton
-                android:id="@+id/addToFavorites"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="end"
-                android:layout_marginLeft="50dp"
-                android:textColor="@color/white"
-                android:background="@drawable/ic_favorite" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/artist_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:paddingLeft="15dp"
                 android:text="@{artist.strArtist}"
                 android:layout_above="@id/subtitle"
                 />
@@ -61,7 +75,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:maxLines="3"
+                android:textSize="14sp"
+                android:paddingLeft="15dp"
+                android:paddingBottom="20dp"
+                android:textFontWeight="300"
                 android:text='@{artist.strCountry.concat(" - ").concat(artist.strGenre)}'
                 android:layout_alignParentBottom="true" />
 
@@ -71,42 +88,62 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="15dp">
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="20dp">
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#8D8D8D"
                 android:text="@{artist.strBiographyEN}"
-                android:maxLines="3"
+                android:maxLines="4"
                 android:ellipsize="end"/>
 
             <TextView
                 android:id="@+id/album_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Albums (10)"
+                android:text='@{albumCount}'
+                android:textStyle="bold"
+                android:textSize="24sp"
                 android:layout_marginTop="30dp"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerColor="#E6E6E6"
+                android:layout_marginTop="15dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:id="@+id/albumList"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Titres les plus appréciés" />
+                android:text="Aucun album à afficher"
+                android:textAlignment="center"
+                android:id="@+id/no_album" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Titres les plus appréciés"
+                android:layout_marginTop="30dp"
+                android:textStyle="bold"
+                android:textSize="24sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:id="@+id/popular_titles_list"
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
-                android:layout_marginBottom="30dp" />
+                android:layout_marginBottom="10dp" />
 
             <TextView
                 android:layout_width="match_parent"

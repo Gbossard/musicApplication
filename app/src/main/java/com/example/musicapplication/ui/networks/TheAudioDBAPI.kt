@@ -144,6 +144,7 @@ data class Album (
     val strTrackThumb: String?,
     val strCountry: String?,
     val intScoreVotes: String?,
+    val intScore: String?,
     val strDescriptionEN: String?,
     //val strType: String?,
     //val intWeek: String?,

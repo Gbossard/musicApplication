@@ -26,7 +26,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="225dp"
                 android:background="@color/black"
                 android:id="@+id/relative">
 
@@ -42,26 +42,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_centerHorizontal="true"
-                    android:paddingHorizontal="15dp"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="30dp">
+                    android:padding="15dp" >
 
                     <ImageButton
                         android:id="@+id/backToMain"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="start"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:background="@drawable/ic_back" />
-
                     <TextView
                         android:id="@+id/artist_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
                         android:textColor="@color/white"
                         android:text='@{album.strArtist}'
                         android:layout_above="@id/subtitle"
+                        android:textAlignment="center"
                         />
+
+                    <ImageButton
+                        android:id="@+id/addToFavorites"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/ic_favorite" />
 
                 </LinearLayout>
 
@@ -73,15 +79,28 @@
                     android:paddingHorizontal="15dp"
                     android:paddingBottom="10dp">
 
-                    <ImageView
-                        android:id="@+id/image"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp" />
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="105dp"
+                        android:layout_height="105dp"
+                        android:layout_gravity="center_vertical"
+                        app:cardCornerRadius="10dp"
+                        android:paddingBottom="15dp"
+                        android:elevation="10dp" >
+
+                        <ImageView
+                            android:id="@+id/image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_marginLeft="15dp">
 
                         <TextView
                             android:id="@+id/album_name"
@@ -89,6 +108,8 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:text="@{album.strAlbum}"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
                             android:layout_above="@id/subtitle"
                             />
 
@@ -98,6 +119,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:maxLines="3"
+                            android:textSize="14sp"
                             android:text='@{tracklistSize.concat(" chansons")}'
                             android:layout_alignParentBottom="true" />
 
@@ -114,18 +136,83 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="15dp">
 
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="5dp"
+                    app:cardBackgroundColor="#F3F3F3"
+                    app:contentPadding="5dp"
+                    android:paddingBottom="15dp"
+                    android:id="@+id/votes">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="48dp"
+                            android:layout_height="22dp"
+                            app:cardCornerRadius="5dp"
+                            android:background="@color/white" >
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_gravity="center_vertical|center">
+
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:textColor="#8D8D8D"
+                                    android:background="@drawable/ic_star" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{album.intScore}"
+                                    android:textSize="12dp"
+                                    android:textColor="#8D8D8D"/>
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text='@{album.intScoreVotes.concat(" votes")}'
+                            android:textSize="14dp"
+                            android:paddingLeft="15dp"
+                            android:textColor="#000"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{album.strDescriptionEN}"
                     android:maxLines="5"
-                    android:ellipsize="end" />
+                    android:ellipsize="end"
+                    android:layout_marginTop="20dp" />
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Titres" />
+                    android:text="Titres"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:layout_marginTop="20dp" />
+
+
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="15dp"
+                    app:dividerColor="#E6E6E6" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

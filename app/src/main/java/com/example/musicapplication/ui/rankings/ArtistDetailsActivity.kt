@@ -81,6 +81,12 @@ class ArtistDetailsActivity : AppCompatActivity() {
                     for(i in artistAlbumTable.album){
                         dataAlbums.add(i)
                     }
+                    dataAlbums = dataAlbums.asReversed()
+                    binding.albumList.isVisible = dataAlbums.size > 0
+                    binding.noAlbum.isVisible = !binding.albumList.isVisible
+
+                    //Number of albums:
+                    binding.albumCount = "Albums (" + dataAlbums.size.toString() + ")"
 
                     binding.albumList.apply {
                         binding.albumList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
