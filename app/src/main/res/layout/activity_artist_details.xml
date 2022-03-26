@@ -15,9 +15,10 @@
 </data>
 
 <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <LinearLayout
         android:orientation="vertical"
@@ -56,9 +57,9 @@
                 android:id="@+id/addToFavorites"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:clickable="@{() -> favoriteViewModel.save()}"
                 android:textColor="@color/white"
                 android:background="@drawable/ic_favorite" />
+                <!--android:onClick="@{() -> favoriteViewModel.save()}"-->
 
             </LinearLayout>
 

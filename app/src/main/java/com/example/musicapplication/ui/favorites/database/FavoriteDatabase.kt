@@ -7,7 +7,9 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Artist::class], version = 1)
 abstract class FavoriteDatabase: RoomDatabase() {
-    abstract val favoriteDao: FavoriteDao
+    //abstract val favoriteDao: FavoriteDao
+    abstract fun favoriteDao(): FavoriteDao
+
 
     companion object {
         @Volatile

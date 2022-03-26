@@ -35,6 +35,7 @@ import com.example.musicapplication.ui.rankings.models.ArtistViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.jetbrains.anko.doAsync
 import java.util.*
 
 /**
@@ -60,12 +61,21 @@ class ArtistDetailsActivity : AppCompatActivity() {
         val artistName: String = intent.getStringExtra("artistName").toString()
 
         // Favorites
-        val dao = FavoriteDatabase.getInstance(application).favoriteDao
+
+        //Instance ViewModel:
+        val dao = FavoriteDatabase.getInstance(application).favoriteDao()
         val repository = FavoriteRepository(dao)
         val factory = FavoriteViewModelFactory(repository)
         favoriteViewModel = ViewModelProvider(this, factory).get(FavoriteViewModel::class.java)
-        binding.favoriteViewModel = favoriteViewModel
-        binding.lifecycleOwner = this
+
+        binding.addToFavorites.setOnClickListener{
+            doAsync {
+                favoriteViewModel.save()
+            }
+            //favoriteViewModel.save()
+            //binding.favoriteViewModel = favoriteViewModel
+            //binding.lifecycleOwner = this
+        }
 
         //Back button :
         binding.backToMain.setOnClickListener{

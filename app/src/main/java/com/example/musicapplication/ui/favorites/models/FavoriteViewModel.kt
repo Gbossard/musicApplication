@@ -1,5 +1,6 @@
 package com.example.musicapplication.ui.favorites.models
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -20,15 +21,18 @@ class FavoriteViewModel(private val repository: FavoriteRepository): ViewModel()
         val strArtistThumb = strArtistThumb.value!!
         val isFavorite = isFavorite.value!!
         insertArtist(Artist(idArtist, strArtist, strArtistThumb, isFavorite))
+        Log.d("SAVE","Artiste ajouté")
     }
 
     private fun insertArtist(artist: Artist) = viewModelScope.launch {
         repository.insert(artist)
     }
 
-    fun getSavedArtists() = liveData {
-        repository.artists.collect {
-            emit(it)
+    fun getSavedArtists() {
+        liveData {
+            repository.artists.collect {
+                emit(it)
+            }
         }
     }
 }
