@@ -1,19 +1,13 @@
 package com.example.musicapplication.ui.rankings.adapters
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapplication.R
-import com.example.musicapplication.ui.networks.Album
 import com.example.musicapplication.ui.networks.Title
-import com.example.musicapplication.ui.rankings.ArtistDetailsActivity
-import com.squareup.picasso.Picasso
 
 class ArtistTitlesAdapter(private val mList: List<Title>) : RecyclerView.Adapter<ArtistTitlesAdapter.ViewHolder>() {
 

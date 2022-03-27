@@ -16,4 +16,16 @@ interface FavoriteDao {
 
     @Delete
     suspend fun deleteArtist(artist: Artist)
+
+//    @Insert
+//    suspend fun insertAlbum(album: Album)
+//
+//    @Query("SELECT * FROM album_table")
+//    fun getAllAlbums(): Flow<List<Album>>
+//
+//    @Update
+//    suspend fun updateAlbum(album: Album)
+//
+//    @Delete
+//    suspend fun deleteAlbum(album: Album)
 }

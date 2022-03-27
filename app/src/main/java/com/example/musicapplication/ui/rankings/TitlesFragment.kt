@@ -2,20 +2,18 @@ package com.example.musicapplication.ui.rankings
 
 import TrendingTitlesViewModel
 import android.os.Bundle
-import android.provider.Contacts
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.*
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musicapplication.databinding.FragmentTitlesBinding
 import com.example.musicapplication.ui.networks.Title
 import com.example.musicapplication.ui.rankings.adapters.TrendingTitlesListAdapter
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.launch
 
 
 /**

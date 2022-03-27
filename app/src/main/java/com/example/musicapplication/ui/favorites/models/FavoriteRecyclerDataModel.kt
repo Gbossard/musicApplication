@@ -12,6 +12,7 @@ sealed class FavoriteRecyclerDataModel {
         val strArtist: String?,
         val strArtistThumb: String?,
         val idArtist: String?,
+        val isFavorite: Boolean?,
     ) : FavoriteRecyclerDataModel()
 
     data class AlbumDataModel(
@@ -23,5 +24,6 @@ sealed class FavoriteRecyclerDataModel {
         val strArtist: String?,
         val strAlbumThumb: String?,
         val idAlbum: String?,
+        val isFavorite: Boolean?,
     ) : FavoriteRecyclerDataModel()
 }

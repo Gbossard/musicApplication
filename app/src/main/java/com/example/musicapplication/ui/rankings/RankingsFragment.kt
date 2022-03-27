@@ -1,23 +1,18 @@
 package com.example.musicapplication.ui.rankings
 
-import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.example.musicapplication.R
-import com.example.musicapplication.R.*
 import com.example.musicapplication.databinding.FragmentRankingsBinding
-import com.example.musicapplication.databinding.FragmentTitlesBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 private const val ARG_OBJECT = "object"

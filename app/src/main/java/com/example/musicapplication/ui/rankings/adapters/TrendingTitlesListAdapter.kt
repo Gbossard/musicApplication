@@ -1,7 +1,5 @@
 package com.example.musicapplication.ui.rankings.adapters
 
-import android.app.Activity
-import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -14,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapplication.R
 import com.example.musicapplication.ui.networks.Title
 import com.example.musicapplication.ui.rankings.ArtistDetailsActivity
-import com.example.musicapplication.ui.rankings.TitlesFragment
 import com.squareup.picasso.Picasso
 
 class TrendingTitlesListAdapter(private val mList: List<Title>) : RecyclerView.Adapter<TrendingTitlesListAdapter.ViewHolder>() {

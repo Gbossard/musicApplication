@@ -18,7 +18,6 @@ class ArtistViewModel() : ViewModel() {
     )
 
     fun listen(): Flow<ArtistState> {
-        //Log.d("Flow", artistFlow.asStateFlow().toString())
         return artistFlow.asStateFlow()
     }
 

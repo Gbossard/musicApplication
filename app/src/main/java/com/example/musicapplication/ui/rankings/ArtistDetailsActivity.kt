@@ -1,26 +1,15 @@
 package com.example.musicapplication.ui.rankings
 
-import TrendingTitlesViewModel
 import android.os.Bundle
-import android.util.Log
-import android.view.MenuItem
 import androidx.activity.viewModels
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import com.example.musicapplication.R
-import com.example.musicapplication.databinding.ActivityArtistDetailsBinding
-import androidx.annotation.NonNull
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.musicapplication.databinding.ActivityMainBinding
-import com.example.musicapplication.databinding.FragmentTitlesBinding
+import com.example.musicapplication.R
+import com.example.musicapplication.databinding.ActivityArtistDetailsBinding
 import com.example.musicapplication.ui.favorites.database.FavoriteDatabase
 import com.example.musicapplication.ui.favorites.database.FavoriteRepository
 import com.example.musicapplication.ui.favorites.models.FavoriteViewModel
@@ -30,13 +19,10 @@ import com.example.musicapplication.ui.networks.ArtistData
 import com.example.musicapplication.ui.networks.Title
 import com.example.musicapplication.ui.rankings.adapters.ArtistAlbumsAdapter
 import com.example.musicapplication.ui.rankings.adapters.ArtistTitlesAdapter
-import com.example.musicapplication.ui.rankings.adapters.TrendingTitlesListAdapter
 import com.example.musicapplication.ui.rankings.models.ArtistViewModel
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.doAsync
-import java.util.*
 
 /**
  * ECRAN DETAILS DE L'ARTISTE :
@@ -60,21 +46,17 @@ class ArtistDetailsActivity : AppCompatActivity() {
         val artistId: String = intent.getStringExtra("artistId").toString()
         val artistName: String = intent.getStringExtra("artistName").toString()
 
-        // Favorites
-
         //Instance ViewModel:
         val dao = FavoriteDatabase.getInstance(application).favoriteDao()
         val repository = FavoriteRepository(dao)
         val factory = FavoriteViewModelFactory(repository)
         favoriteViewModel = ViewModelProvider(this, factory).get(FavoriteViewModel::class.java)
 
+        // Favorites
         binding.addToFavorites.setOnClickListener{
             doAsync {
                 favoriteViewModel.save()
             }
-            //favoriteViewModel.save()
-            //binding.favoriteViewModel = favoriteViewModel
-            //binding.lifecycleOwner = this
         }
 
         //Back button :

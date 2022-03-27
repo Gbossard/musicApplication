@@ -2,24 +2,18 @@ package com.example.musicapplication.ui.search.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.text.method.TextKeyListener.clear
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapplication.R
-import com.example.musicapplication.ui.networks.Album
-import com.example.musicapplication.ui.networks.Artist
 import com.example.musicapplication.ui.rankings.AlbumDetailsActivity
 import com.example.musicapplication.ui.rankings.ArtistDetailsActivity
-import com.example.musicapplication.ui.rankings.adapters.ArtistAlbumsAdapter
 import com.example.musicapplication.ui.search.models.SearchRecyclerDataModel
 import com.squareup.picasso.Picasso
-import java.util.Collections.addAll
 
 class SearchAdapter() : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 

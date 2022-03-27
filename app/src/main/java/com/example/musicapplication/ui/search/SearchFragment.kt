@@ -7,33 +7,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musicapplication.databinding.FragmentSearchBinding
-import com.example.musicapplication.ui.networks.Album
-import com.example.musicapplication.ui.networks.Artist
-import com.example.musicapplication.ui.rankings.adapters.ArtistAlbumsAdapter
-import com.example.musicapplication.ui.rankings.models.ArtistViewModel
 import com.example.musicapplication.ui.search.adapters.SearchAdapter
 import com.example.musicapplication.ui.search.models.SearchRecyclerDataModel
 import com.example.musicapplication.ui.search.models.SearchViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import android.view.MotionEvent
-import android.view.View.OnTouchListener
-
-import androidx.core.view.MotionEventCompat
-
-
 
 
 class SearchFragment : Fragment() {

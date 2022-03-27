@@ -20,7 +20,6 @@ class AlbumDetailsViewModel() : ViewModel() {
     )
 
     fun listen(): Flow<AlbumState> {
-        //Log.d("Flow", albumFlow.asStateFlow().toString())
         return albumFlow.asStateFlow()
     }
 
